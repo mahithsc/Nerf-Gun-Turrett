@@ -24,8 +24,9 @@ while True:
             bboxC = detection.location_data.relative_bounding_box
             ih, iw, ic = img.shape
             bbox = int(bboxC.xmin * iw), int(bboxC.ymin * ih), int(bboxC.width * iw), int(bboxC.height * ih)
-
+            print(bbox[0])
             cv2.rectangle(img, bbox, (255, 0, 255), 3)
+            cv2.putText(img, f'Index: 1 | Confidence: 100%', (bbox[0], bbox[1]), cv2.FONT_HERSHEY_PLAIN, 3, (0,255,0), 2)
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
