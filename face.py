@@ -15,7 +15,13 @@ while True:
     success, img = cap.read()
 
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    result = faceDetection.process(imgRGB)
+    results = faceDetection.process(imgRGB)
+
+    if results.detections:
+        for id, detection in enumerate(results.detections):
+            print(detection.location_data.relative_bounding_box)
+
+    print(results)
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
@@ -24,4 +30,3 @@ while True:
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
-
