@@ -1,19 +1,20 @@
 import cv2
-from FaceRecognition import FaceRecognition
+from face_recognition import FaceRecognition
+from serial_connection import create_connection
+import time
 
 if __name__ == '__main__':
-
-    # getting the webcam
+    conn = create_connection()
     cap = cv2.VideoCapture(0)
-
-    # initializing the facial recognition module
     detector = FaceRecognition()
 
     while True:
-        # getting image from webcam
         success, img = cap.read()
-        # getting deteted faces
         recs = detector.get_recognitions(img = img)
-        # printing image to screen
+
         cv2.imshow("Image", detector.draw_landmarks(img=img))
         cv2.waitKey(1)
+
+        if (recs != None):
+            if(len(recs) >= 1):
+                conn.write(b"FOUND\n")

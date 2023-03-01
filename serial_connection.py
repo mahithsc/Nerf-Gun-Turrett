@@ -1,8 +1,6 @@
 import serial.tools.list_ports
 
 def create_connection():
-
-
     ports = serial.tools.list_ports.comports()
 
     serialInst = serial.Serial()
@@ -27,10 +25,3 @@ def create_connection():
         serialInst.open()
     
     return serialInst
-
-
-# while True:
-#     if serialInst.in_waiting:
-#         packet = serialInst.readline()
-#         print(packet.decode('utf'))
-#     serialInst.write("FOUND".encode('utf-8'))
