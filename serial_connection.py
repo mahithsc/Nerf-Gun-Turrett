@@ -18,12 +18,14 @@ for i in portList:
         print("You are now connected to serial port:", i)
 
 
-serialInst.baudrate = 9600
-serialInst.port = portVar
-serialInst.open()
+    serialInst.baudrate = 9600
+    serialInst.port = portVar
+    serialInst.close()
+    serialInst.open()
 
 
 while True:
     if serialInst.in_waiting:
         packet = serialInst.readline()
         print(packet.decode('utf'))
+    serialInst.write("FOUND".encode('utf-8'))
