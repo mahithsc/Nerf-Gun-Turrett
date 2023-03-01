@@ -7,6 +7,9 @@ import time
 cap = cv2.VideoCapture(0)
 pTime = 0
 
+mpFaceDetection = mp.solutions.face_detection
+mpDraw = mp.solutions.drawing_utils
+
 while True:
     success, img = cap.read()
 
