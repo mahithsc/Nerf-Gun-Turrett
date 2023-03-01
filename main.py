@@ -17,4 +17,5 @@ if __name__ == '__main__':
 
         if (recs != None):
             if(len(recs) >= 1):
-                conn.write(b"FOUND\n")
+                conn.write(b'Y')
+    
