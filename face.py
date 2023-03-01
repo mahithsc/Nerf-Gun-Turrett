@@ -25,7 +25,7 @@ while True:
             ih, iw, ic = img.shape
             bbox = int(bboxC.xmin * iw), int(bboxC.ymin * ih), int(bboxC.width * iw), int(bboxC.height * ih)
 
-            cv2.rectangle(img, bbox, (255, 0, 255), 2)
+            cv2.rectangle(img, bbox, (255, 0, 255), 3)
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
