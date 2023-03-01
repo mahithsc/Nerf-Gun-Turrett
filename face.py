@@ -27,8 +27,12 @@ while True:
             bbox = int(bboxC.xmin * iw), int(bboxC.ymin * ih), int(bboxC.width * iw), int(bboxC.height * ih)
             cv2.rectangle(img, bbox, (255, 0, 255), 3)
             cv2.putText(img, f'Index:  {id + 1} | Confidence: {int(detection.score[0] * 100)}%', (bbox[0], bbox[1]), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
-            # serialInst.write("FOUND")
-    # serialInst.write("NOT_FOUND")
+            serialInst.write("FOUND".encode())
+    serialInst.write("NOT_FOUND".encode())
+
+    if serialInst.in_waiting:
+        packet = serialInst.readline()
+        print(packet.decode('utf'))
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)

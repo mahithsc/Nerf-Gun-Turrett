@@ -1,31 +1,36 @@
 import serial.tools.list_ports
 
-ports = serial.tools.list_ports.comports()
-
-serialInst = serial.Serial()
-
-portList = []
-
-for onePort in ports:
-    print(onePort)
-    portList.append(onePort)
+def create_connection():
 
 
-portVar = input("From the selection above paste the first part of the serial port you wish to connect to: ")
+    ports = serial.tools.list_ports.comports()
 
-for i in portList:
-    if portVar in i:
-        print("You are now connected to serial port:", i)
+    serialInst = serial.Serial()
 
+    portList = []
 
-    serialInst.baudrate = 9600
-    serialInst.port = portVar
-    serialInst.close()
-    serialInst.open()
+    for onePort in ports:
+        print(onePort)
+        portList.append(onePort)
 
 
-while True:
-    if serialInst.in_waiting:
-        packet = serialInst.readline()
-        print(packet.decode('utf'))
-    serialInst.write("FOUND".encode('utf-8'))
+    portVar = input("From the selection above paste the first part of the serial port you wish to connect to: ")
+
+    for i in portList:
+        if portVar in i:
+            print("You are now connected to serial port:", i)
+
+
+        serialInst.baudrate = 9600
+        serialInst.port = portVar
+        serialInst.close()
+        serialInst.open()
+    
+    return serialInst
+
+
+# while True:
+#     if serialInst.in_waiting:
+#         packet = serialInst.readline()
+#         print(packet.decode('utf'))
+#     serialInst.write("FOUND".encode('utf-8'))
