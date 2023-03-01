@@ -9,9 +9,13 @@ pTime = 0
 
 mpFaceDetection = mp.solutions.face_detection
 mpDraw = mp.solutions.drawing_utils
+faceDetection = mpFaceDetection.FaceDetection()
 
 while True:
     success, img = cap.read()
+
+    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    result = faceDetection.process(imgRGB)
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
