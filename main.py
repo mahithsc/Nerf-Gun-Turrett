@@ -3,6 +3,7 @@ from face_recognition import FaceRecognition
 from body_recognition import BodyRecognition
 from serial_connection import create_connection
 import time
+import json
 
 if __name__ == '__main__':
     conn = create_connection()
@@ -35,16 +36,29 @@ if __name__ == '__main__':
 
                 # checking to make sure the cross air is on the head
                 if ((xmin < xmid and xmid < xmax) and (ymin < ymid and ymid < ymax)):
+                    
+                    data = {'command': 'FIRE'}
+                    data = json.dumps(data)
+
                     print("FIRE")
-                    conn.write("FIRE\r".encode())
+                    # conn.write("FIRE\r".encode())
+                    conn.write(data.encode())
 
                 
                 else:
+                    data = {'command': 'DONTFIRE'}
+                    data = json.dumps(data)
+                    
                     print("DONTFIRE")
-                    conn.write("DONTFIRE\r".encode())
+                    # conn.write("DONTFIRE\r".encode())
+                    conn.write(data.encode())
         else:
+            data = {'command': 'DONTFIRE'}
+            data = json.dumps(data)
+            
             print("DONTFIRE")
-            conn.write("DONTFIRE\r".encode())
+            # conn.write("DONTFIRE\r".encode())
+            conn.write(data.encode())
 
         cv2.imshow("Image", img)
         cv2.waitKey(1)
