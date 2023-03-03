@@ -17,5 +17,9 @@ if __name__ == '__main__':
 
         if (recs != None):
             if(len(recs) >= 1):
-                conn.write(b'Y')
-    
+                conn.write('FOUND\r'.encode())
+            else:
+                conn.write("NFOUND\r".encode())
+        else:
+            conn.write("NFOUND\r".encode())
+

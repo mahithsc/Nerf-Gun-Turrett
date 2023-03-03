@@ -1,30 +1,30 @@
 #include <Servo.h>
 
 int incomingByte = 0;
-Servo myservo;
+Servo servo;
 
 void setup() {
   Serial.begin(9600);
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
-  myservo.attach(9);
-  myservo.write(0);
+  servo.attach(9);
+  servo.write(0);
 }
 
 void loop() {
-  delay(40);
-  digitalWrite(13, LOW);
-  if(Serial.available() > 0) {
-    if(Serial.read() != NULL) {
-      digitalWrite(13, HIGH);
-      myservo.write(90);
-    }
-    else{
-      digitalWrite(13, LOW);
-      myservo.write(0);
-    }
-  } else {
+  while(Serial.available() == 0){}
+
+  // getting the command
+  String command = Serial.readStringUntil('\r');
+
+  if(command == "FOUND") {
+    digitalWrite(13, HIGH);
+    servo.write(120);
+  }
+   if(command == "NFOUND") {
     digitalWrite(13, LOW);
-    myservo.write(0);
+    servo.write(0);
   }
 }
+
+
