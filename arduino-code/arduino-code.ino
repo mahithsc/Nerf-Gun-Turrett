@@ -5,8 +5,10 @@ Servo servo;
 
 void setup() {
   Serial.begin(9600);
+
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
+  
   servo.attach(9);
   servo.write(0);
 }
@@ -17,6 +19,7 @@ void loop() {
   // getting the command
   String command = Serial.readStringUntil('\r');
 
+// checking commad output
   if(command == "FOUND") {
     digitalWrite(13, HIGH);
     servo.write(120);
