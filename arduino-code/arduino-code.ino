@@ -17,26 +17,24 @@ void setup() {
 void loop() {
   while(Serial.available() == 0){}
 
-  // getting the command
-  // String command = Serial.readStringUntil('\r');
-
+  // getting and parsing JSON
   StaticJsonDocument<256> doc;  // JSON document buffer
   DeserializationError error = deserializeJson(doc, Serial);  // Parse JSON data
 
-  if(error) {
-    digitalWrite(13, HIGH);
-  } else {
+  if(!error) {
+    // setting the Serial data to local variables
     String command = doc["command"];
-    // // checking commad output
-   if(command == "FIRE") {
-    //  digitalWrite(13, HIGH);
-     servo.write(120);
-     servo.write(90);
-   }
-    if(command == "DONTFIRE") {
-    //  digitalWrite(13, LOW);
-     servo.write(0);
-   }
+
+
+    if(command == "FIRE") {
+      //  digitalWrite(13, HIGH);
+      servo.write(120);
+      servo.write(90);
+    }
+      if(command == "DONTFIRE") {
+      //  digitalWrite(13, LOW);
+      servo.write(0);
+    }
   }
 }
 
