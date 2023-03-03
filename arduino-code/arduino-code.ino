@@ -20,11 +20,11 @@ void loop() {
   String command = Serial.readStringUntil('\r');
 
 // checking commad output
-  if(command == "FOUND") {
+  if(command == "FIRE") {
     digitalWrite(13, HIGH);
     servo.write(120);
   }
-   if(command == "NFOUND") {
+   if(command == "DONTFIRE") {
     digitalWrite(13, LOW);
     servo.write(0);
   }
