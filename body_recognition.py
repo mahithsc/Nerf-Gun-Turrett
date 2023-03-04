@@ -23,7 +23,7 @@ class BodyRecognition:
         return results.pose_landmarks
     
     def draw_landmarks(self, img):
-        if self.recognitions:
+        if self.recognitions[12] and self.recognitions[11] and self.recognitions[24] and self.recognitions[23]:
             self.mppDraw.draw_landmarks(img, self.recognitions, mp.solutions.pose.POSE_CONNECTIONS)
         return img
 
