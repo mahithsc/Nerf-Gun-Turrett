@@ -19,11 +19,14 @@ if __name__ == '__main__':
         # cross-air
         xmid, ymid = (int(iw/2), int(ih/2))
 
+        # creates the landmarks for the face and the body
         body_recs = body_detector.get_recognitions(img = img)
         face_recs = face_detector.get_recognitions(img = img)
 
-        img = body_detector.draw_landmarks(img=img)
-        img = face_detector.draw_landmarks(img = img)
+        # updates the image to draw landmarks
+        body_detector.draw_landmarks(img=img)
+        face_detector.draw_landmarks(img = img)
+
         cv2.putText(img, "+", (xmid, ymid), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
 
         if (face_recs != None):

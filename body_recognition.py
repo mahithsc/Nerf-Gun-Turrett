@@ -30,7 +30,3 @@ class BodyRecognition:
                 top_left = (int(landmarks[12].x*iw), int(landmarks[12].y*ih))
                 bottom_right = (int(landmarks[11].x * iw), int(landmarks[23].y*ih))
                 cv2.rectangle(img, top_left, bottom_right, (255, 0, 255), 3)
-                return img
-        return img
-
-
