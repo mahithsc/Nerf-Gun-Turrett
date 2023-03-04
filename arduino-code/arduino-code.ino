@@ -3,6 +3,11 @@
 
 int incomingByte = 0;
 Servo servo;
+int servoPin = 9;
+
+int getAngle(int actualAngle) {
+  return actualAngle * 130 / 180;
+}
 
 void setup() {
   Serial.begin(9600);
@@ -10,8 +15,8 @@ void setup() {
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
   
-  servo.attach(9);
-  servo.write(0);
+  servo.attach(servoPin);
+  servo.write(getAngle(0));
 }
 
 void loop() {
@@ -29,7 +34,7 @@ void loop() {
     if(command == "FIRE") {
       //  digitalWrite(13, HIGH);
       servo.write(120);
-      servo.write(90);
+      servo.write(getAngle(90));
     }
       if(command == "DONTFIRE") {
       //  digitalWrite(13, LOW);
