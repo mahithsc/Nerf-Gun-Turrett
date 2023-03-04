@@ -23,8 +23,14 @@ class BodyRecognition:
         return results.pose_landmarks
     
     def draw_landmarks(self, img):
-        if self.recognitions[12] and self.recognitions[11] and self.recognitions[24] and self.recognitions[23]:
-            self.mppDraw.draw_landmarks(img, self.recognitions, mp.solutions.pose.POSE_CONNECTIONS)
+        if self.recognitions:
+            landmarks = self.recognitions.landmark
+            if landmarks[12] and landmarks[11] and landmarks[23] and landmarks[24]:
+                ih, iw, ic = img.shape
+                top_left = (int(landmarks[12].x*iw), int(landmarks[12].y*ih))
+                bottom_right = (int(landmarks[11].x * iw), int(landmarks[23].y*ih))
+                cv2.rectangle(img, top_left, bottom_right, (255, 0, 255), 3)
+                return img
         return img
 
 
