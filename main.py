@@ -8,10 +8,9 @@ import json
 
 if __name__ == '__main__':
     # getting the names of the available arduino ports and creating a serial connection
-    # port_name = get_port_name()
     # conn = create_connection(port_name)
 
-    board = Arduino()
+    board = Arduino(get_port_name())
 
     # video cap.
     cap = cv2.VideoCapture(0)

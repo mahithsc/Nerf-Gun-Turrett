@@ -2,8 +2,8 @@ import pyfirmata
 import time
 
 class Arduino:
-    def __init__(self) -> None:
-        self.board = pyfirmata.Arduino('/dev/cu.usbmodem21301')
+    def __init__(self, port) -> None:
+        self.board = pyfirmata.Arduino(port)
         self.it = pyfirmata.util.Iterator(self.board)
         self.it.start()
         self.led = self.board.get_pin('d:13:o')
