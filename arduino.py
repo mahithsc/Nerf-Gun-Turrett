@@ -6,10 +6,15 @@ class Arduino:
         self.board = pyfirmata.Arduino(port)
         self.it = pyfirmata.util.Iterator(self.board)
         self.it.start()
+
+        # different pins
         self.led = self.board.get_pin('d:13:o')
+        self.servo = self.board.get_pin('d:9:s')
+        self.servo.write(0)
 
     def on(self):
         self.led.write(1)
     
     def off(self):
         self.led.write(0)
+
