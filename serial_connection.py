@@ -1,9 +1,7 @@
 import serial.tools.list_ports
 
-def create_connection():
+def get_port_name():
     ports = serial.tools.list_ports.comports()
-
-    serialInst = serial.Serial()
 
     portList = []
 
@@ -18,10 +16,16 @@ def create_connection():
         if portVar in i:
             print("You are now connected to serial port:", i)
 
+def create_connection(portVar):
+    serialInst = serial.Serial()
 
-        serialInst.baudrate = 9600
-        serialInst.port = portVar
-        serialInst.close()
-        serialInst.open()
+    serialInst.baudrate = 9600
+    serialInst.port = portVar
+    serialInst.close()
+    serialInst.open()
     
     return serialInst
+
+
+    
+

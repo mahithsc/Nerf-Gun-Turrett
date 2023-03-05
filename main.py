@@ -1,13 +1,19 @@
 import cv2
 from face_recognition import FaceRecognition
 from body_recognition import BodyRecognition
-from serial_connection import create_connection
+from serial_connection import create_connection, get_port_name
 import time
 import json
 
 if __name__ == '__main__':
-    conn = create_connection()
+    # getting the names of the available arduino ports and creating a serial connection
+    port_name = get_port_name()
+    # conn = create_connection(port_name)
+
+    # video cap.
     cap = cv2.VideoCapture(0)
+
+    # instantiating the different classification libraris
     face_detector = FaceRecognition()
     body_detector = BodyRecognition()
 
@@ -27,6 +33,7 @@ if __name__ == '__main__':
         body_detector.draw_landmarks(img=img)
         face_detector.draw_landmarks(img = img)
 
+        # cross hair
         cv2.putText(img, "+", (xmid, ymid), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
 
         if (face_recs != None):
@@ -44,7 +51,7 @@ if __name__ == '__main__':
                     data = json.dumps(data)
 
                     print("FIRE")
-                    conn.write(data.encode())
+                    # conn.write(data.encode())
 
                 
                 else:
@@ -52,13 +59,13 @@ if __name__ == '__main__':
                     data = json.dumps(data)
                     
                     print("DONTFIRE")
-                    conn.write(data.encode())
+                    # conn.write(data.encode())
         else:
             data = {'command': 'DONTFIRE'}
             data = json.dumps(data)
             
             print("DONTFIRE")
-            conn.write(data.encode())
+            # conn.write(data.encode())
 
         cv2.imshow("Image", img)
         cv2.waitKey(1)
