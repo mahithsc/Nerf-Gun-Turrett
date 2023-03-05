@@ -2,13 +2,16 @@ import cv2
 from face_recognition import FaceRecognition
 from body_recognition import BodyRecognition
 from serial_connection import create_connection, get_port_name
+from arduino import Arduino
 import time
 import json
 
 if __name__ == '__main__':
     # getting the names of the available arduino ports and creating a serial connection
-    port_name = get_port_name()
+    # port_name = get_port_name()
     # conn = create_connection(port_name)
+
+    board = Arduino()
 
     # video cap.
     cap = cv2.VideoCapture(0)
@@ -46,6 +49,8 @@ if __name__ == '__main__':
 
                 # checking to make sure the cross air is on the head
                 if ((xmin < xmid and xmid < xmax) and (ymin < ymid and ymid < ymax)):
+
+                    board.on()
                     
                     data = {'command': 'FIRE'}
                     data = json.dumps(data)
@@ -55,12 +60,14 @@ if __name__ == '__main__':
 
                 
                 else:
+                    board.off()
                     data = {'command': 'DONTFIRE'}
                     data = json.dumps(data)
                     
                     print("DONTFIRE")
                     # conn.write(data.encode())
         else:
+            board.off()
             data = {'command': 'DONTFIRE'}
             data = json.dumps(data)
             
