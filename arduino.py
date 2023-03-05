@@ -9,6 +9,7 @@ class Arduino:
 
         # different pins
         self.led = self.board.get_pin('d:13:o')
+        
         self.servo = self.board.get_pin('d:9:s')
         self.servo.write(0)
 
@@ -17,4 +18,10 @@ class Arduino:
     
     def off(self):
         self.led.write(0)
+    
+    def shoot(self):
+        self.servo.write(130)
+    
+    def stop_shooting(self):
+        self.servo.write(0)
 

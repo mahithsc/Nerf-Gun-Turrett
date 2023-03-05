@@ -48,30 +48,13 @@ if __name__ == '__main__':
 
                 # checking to make sure the cross air is on the head
                 if ((xmin < xmid and xmid < xmax) and (ymin < ymid and ymid < ymax)):
-
-                    board.on()
-                    
-                    data = {'command': 'FIRE'}
-                    data = json.dumps(data)
-
-                    print("FIRE")
-                    # conn.write(data.encode())
-
+                    board.shoot()
                 
                 else:
-                    board.off()
-                    data = {'command': 'DONTFIRE'}
-                    data = json.dumps(data)
-                    
-                    print("DONTFIRE")
-                    # conn.write(data.encode())
+                    board.stop_shooting()
         else:
-            board.off()
-            data = {'command': 'DONTFIRE'}
-            data = json.dumps(data)
+            board.stop_shooting()
             
-            print("DONTFIRE")
-            # conn.write(data.encode())
 
         cv2.imshow("Image", img)
         cv2.waitKey(1)
