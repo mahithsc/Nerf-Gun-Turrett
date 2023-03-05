@@ -44,7 +44,6 @@ if __name__ == '__main__':
                     data = json.dumps(data)
 
                     print("FIRE")
-                    # conn.write("FIRE\r".encode())
                     conn.write(data.encode())
 
                 
@@ -53,14 +52,12 @@ if __name__ == '__main__':
                     data = json.dumps(data)
                     
                     print("DONTFIRE")
-                    # conn.write("DONTFIRE\r".encode())
                     conn.write(data.encode())
         else:
             data = {'command': 'DONTFIRE'}
             data = json.dumps(data)
             
             print("DONTFIRE")
-            # conn.write("DONTFIRE\r".encode())
             conn.write(data.encode())
 
         cv2.imshow("Image", img)
