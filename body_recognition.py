@@ -42,4 +42,3 @@ class BodyRecognition:
                 cv2.line(img, top_left, bottom_left, (255, 0, 255), 5)
                 cv2.line(img, top_right, bottom_right, (255, 0, 255), 5)
                 cv2.line(img, bottom_left, bottom_right, (255, 0, 255), 5)
-                # cv2.rectangle(img, top_left, bottom_right, (255, 0, 255), 3)

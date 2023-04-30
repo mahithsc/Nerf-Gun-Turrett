@@ -28,11 +28,11 @@ if __name__ == '__main__':
         xmid, ymid = (int(iw/2), int(ih/2))
 
         # creates the landmarks for the face and the body
-        body_recs = body_detector.get_recognitions(img = img)
+        # body_recs = body_detector.get_recognitions(img = img)
         face_recs = face_detector.get_recognitions(img = img)
 
         # updates the image to draw landmarks
-        body_detector.draw_landmarks(img=img)
+        # body_detector.draw_landmarks(img=img)
         face_detector.draw_landmarks(img = img)
 
         # cross hair
@@ -58,8 +58,3 @@ if __name__ == '__main__':
 
         cv2.imshow("Image", img)
         cv2.waitKey(1)
-
-        
-
-       
-
