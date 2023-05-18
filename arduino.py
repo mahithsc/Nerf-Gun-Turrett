@@ -8,13 +8,13 @@ class Arduino:
         it.start()
 
 
-        self.servo_angle = 0
+        self.servo_angle = 128
 
         # different pins
         self.led = self.board.get_pin('d:13:o')
         
         self.servo = self.board.get_pin('d:9:s')
-        self.servo.write(0)
+        self.servo.write(128)
 
     def on(self):
         self.led.write(1)
@@ -28,8 +28,6 @@ class Arduino:
     def stop_shooting(self):
         self.servo.write(0)
     
-    def turn_right(self):
-        self.servo.write(20)
-    
-    def turn_left(self):
-        self.servo.write(90)
+    def turn(self, angle):
+        self.servo_angle = angle
+        self.servo.write(angle)

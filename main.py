@@ -54,12 +54,23 @@ if __name__ == '__main__':
                 
                 # else:
                 #     board.stop_shooting()
+                
+                # logic to check wether the sero is pointed to the right angle
+                if(xmin < xmid < xmax):
+                    print("shoot")
+                
+                else:
+                    # logic to turn servo
+                    if(xmid > xmin):
+                         cv2.putText(img, "left", (100,100),  cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
+                         print("dont shoot")
+                         board.turn(board.servo_angle+1.5)
+                    if(xmid < xmax):
+                        cv2.putText(img, "right", (100,100),  cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
+                        print('dont shoot')
+                        board.turn(board.servo_angle-1.5)
 
-                # logic to turn the servo
-                if(xmid > x_face_mid):
-                    cv2.putText(img, "left", (100,100),  cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
-                if(xmid < x_face_mid):
-                    cv2.putText(img, "right", (100,100),  cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
+
         else:
             # board.stop_shooting()
             pass
