@@ -44,16 +44,25 @@ if __name__ == '__main__':
                 index = 0
                 current = face_recs[0].location_data.relative_bounding_box
                 xmin, ymin, xmax, ymax = int(current.xmin * iw), int(current.ymin * ih), int((current.xmin + current.width)*iw), int((current.ymin + current.height)*ih)
+                x_face_mid, y_face_mid = xmin + int(xmax-xmin)/2, ymin + int(ymax - ymin) / 2
+                cv2.putText(img, "+", (int(x_face_mid), int(y_face_mid)), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
 
 
                 # checking to make sure the cross air is on the head
-                if ((xmin < xmid and xmid < xmax) and (ymin < ymid and ymid < ymax)):
-                    board.shoot()
+                # if ((xmin < xmid and xmid < xmax) and (ymin < ymid and ymid < ymax)):
+                #     board.shoot()
                 
-                else:
-                    board.stop_shooting()
+                # else:
+                #     board.stop_shooting()
+
+                # logic to turn the servo
+                if(xmid > x_face_mid):
+                    cv2.putText(img, "left", (100,100),  cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
+                if(xmid < x_face_mid):
+                    cv2.putText(img, "right", (100,100),  cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
         else:
-            board.stop_shooting()
+            # board.stop_shooting()
+            pass
             
 
         cv2.imshow("Image", img)

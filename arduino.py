@@ -7,6 +7,9 @@ class Arduino:
         it = pyfirmata.util.Iterator(self.board)
         it.start()
 
+
+        self.servo_angle = 0
+
         # different pins
         self.led = self.board.get_pin('d:13:o')
         
@@ -24,3 +27,9 @@ class Arduino:
     
     def stop_shooting(self):
         self.servo.write(0)
+    
+    def turn_right(self):
+        self.servo.write(20)
+    
+    def turn_left(self):
+        self.servo.write(90)
