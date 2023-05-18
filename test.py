@@ -31,7 +31,6 @@ class ArduinoTest:
     
 
 if __name__ == '__main__':
-
     board = ArduinoTest(get_port_name())
 
 

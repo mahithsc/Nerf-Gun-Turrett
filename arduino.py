@@ -4,8 +4,8 @@ import time
 class Arduino:
     def __init__(self, port) -> None:
         self.board = pyfirmata.Arduino(port)
-        self.it = pyfirmata.util.Iterator(self.board)
-        self.it.start()
+        it = pyfirmata.util.Iterator(self.board)
+        it.start()
 
         # different pins
         self.led = self.board.get_pin('d:13:o')
@@ -24,4 +24,3 @@ class Arduino:
     
     def stop_shooting(self):
         self.servo.write(0)
-
